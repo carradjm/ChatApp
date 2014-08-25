@@ -7,7 +7,7 @@
   <script src="javascripts/chat_ui.js"></script>
 
   <style>
-    html, body, div, ul, li {
+    html, body, div, ul, li, h1, h2, h3 {
       margin: 0;
       padding: 0;
       border: 0;
@@ -18,37 +18,68 @@
       list-style: none;
     }
 
+    h3 {
+      padding-bottom: 5px;
+    }
+
+    .group:after {
+      display: block;
+      clear: both;
+      content: "";
+    }
+
     #container {
       width: 800px;
       margin: 0 auto;
     }
 
+    header {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    .room {
+      padding: 10px;
+    }
+
     .display {
       float: left;
+      height: 500px;
+      width: 500px;
+      border: 2px solid black;
     }
 
     .users {
-      float: right;
+      float: left;
+      padding-left: 20px;
+    }
+
+    .form {
+      bottom: 0;
+      width: 800px;
+      margin: 0 auto;
     }
   </style>
 </head>
 
 <body>
-  <div id="container">
-    <div class="users">
-      <ul class="users-list"></ul>
-    </div>
+  <header class="room"></header>
 
+  <ul id="container" class="group">
     <div class="display">
       <ul class="message-list"></ul>
     </div>
-
-    <div class="form">
-      <form class="chat-form">
-        <input type="text" class="messageBox" placeholder="Message"></input>
-        <button>Send</button>
-      </form>
+    <div class="users">
+      <h3>Users</h3>
+      <ul class="users-list"></ul>
     </div>
+  </ul>
+
+  <div class="form">
+    <form class="chat-form">
+      <input type="text" class="messageBox" placeholder="Message"></input>
+      <button>Send</button>
+    </form>
   </div>
 </body>
 </html>

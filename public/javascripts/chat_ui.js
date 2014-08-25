@@ -26,28 +26,34 @@
 
     socket.on('newConnection', function(data) {
       $(".users-list").html("");
-      data.forEach(function(user) {
+      data.roomUsers.forEach(function(user) {
         $(".users-list").append("<li>" + user + "</li>");
       });
+      $(".message-list").append("<li><strong>" + data.user + " has joined the room</strong></li>");
     });
 
     socket.on('badCommand', function(message) {
-      console.log("commandError fired");
       $(".message-list").append("<li><strong>" + message + "</strong></li>");
+    })
+
+    socket.on('userLeftRoom', function(nickname) {
+      var $li = $(".users-list > li:contains(" + nickname + ")")
+      $li.remove();
+      $(".message-list").append("<li><strong>" + nickname + " has left the room.</strong></li>");
+    });
+
+    socket.on("joinedRoom", function(room) {
+      $('.room').html("<h2>" + room + "</h2>");
+      $(".message-list").html("");
     })
 
     socket.on('nicknameChangeResult', function (data) {
       var $li = $(".users-list > li:contains(" + data.oldNickname + ")")
       $li.html(data.newNickname);
-      $(".message-list").append("<li>" + data.oldNickname + " has changed their nickname to " + data.newNickname + "</li>");
+      $(".message-list").append("<li><strong>" + data.oldNickname + "</strong> has changed their nickname to <strong>" + data.newNickname + "</strong></li>");
     });
 
-    socket.on('userLeft', function(nickname) {
-      console.log('hiiiiiii');
-      $(".message-list").append("<li>" + username + " disconnected</li>");
-    });
-
-    var chatUI =  new ChatUI(socket);
+    var chatUI = new ChatUI(socket);
 
     $(".chat-form").on("submit", function (event) {
       event.preventDefault();
