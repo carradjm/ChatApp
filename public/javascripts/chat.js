@@ -8,7 +8,14 @@
   };
 
   Chat.prototype.sendMessage = function(message) {
-    this.socket.emit('message', message);
+    var re = new RegExp("^/nick ");
+
+    if (re.test(message)) {
+      this.socket.emit("nicknameChangeRequest", message.slice(5));
+    } else {
+      this.socket.emit('message', message);
+    }
+
   };
 
 })();
