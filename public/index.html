@@ -5,19 +5,50 @@
   <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
   <script src="javascripts/chat.js"></script>
   <script src="javascripts/chat_ui.js"></script>
+
+  <style>
+    html, body, div, ul, li {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-family: sans-serif;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    #container {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    .display {
+      float: left;
+    }
+
+    .users {
+      float: right;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="display">
-    <ul class="message-list"></ul>
-  </div>
+  <div id="container">
+    <div class="users">
+      <ul class="users-list"></ul>
+    </div>
 
-  <div class="form">
-    <form class="chat-form">
-      <input type="text" name="message" class="messageBox" placeholder="Message"></input>
+    <div class="display">
+      <ul class="message-list"></ul>
+    </div>
 
-      <button>Send</button>
-    </form>
+    <div class="form">
+      <form class="chat-form">
+        <input type="text" class="messageBox" placeholder="Message"></input>
+        <button>Send</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>
